@@ -1,0 +1,424 @@
+/* Globální nastavení a neonové proměnné */
+:root {
+    --bg-main: #060608;
+    --bg-card: #0b0b11;
+    --border-color: #1b1b28;
+    --text-primary: #f4f4f5;
+    --text-secondary: #94a3b8;
+    
+    /* Neonové barvy */
+    --purple-glow: #a855f7;
+    --blue-glow: #3b82f6;
+    --gradient-glow: linear-gradient(135deg, #a855f7, #3b82f6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Efekt malých jemných hvězd na pozadí celého webu */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, #a855f7, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 80px 120px, #3b82f6, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 110px 210px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 150px 90px, #a855f7, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 190px 180px, #fff, rgba(0,0,0,0));
+    background-size: 250px 250px;
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Fixní Hlavička */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(6, 6, 8, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+.logo span {
+    color: var(--purple-glow);
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 28px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a:hover, nav a.active {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+}
+
+/* Svítící puntík pod aktivním odkazem */
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: var(--purple-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--purple-glow);
+}
+
+/* Mobilní Menu Tlačítko */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+/* Hlavní obsah */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 120px 0 80px 0;
+}
+
+/* Hero Sekce */
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    color: #e9d5ff;
+    box-shadow: inset 0 0 10px rgba(168, 85, 247, 0.1);
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    background: linear-gradient(130deg, #ffffff 40%, #c084fc 70%, #60a5fa 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+/* Glow Tlačítko */
+.cta-button {
+    display: inline-block;
+    background: var(--gradient-glow);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 30px rgba(59, 130, 246, 0.6);
+}
+
+/* Sekce Služby */
+.section-header {
+    max-width: 600px;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+/* Karty služeb s glow efektem při najetí */
+.service-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Jemný barevný přechod na spodní hraně karty */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.06), transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.service-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.08), 0 1px 3px rgba(168, 85, 247, 0.08);
+}
+
+.card-icon {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--purple-glow);
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+.service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Sekce O nás */
+.about {
+    border-top: 1px solid var(--border-color);
+}
+
+.about-container {
+    max-width: 800px;
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.about p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+}
+
+/* Kontakt s velkým Glow boxem */
+.contact {
+    border-top: 1px solid var(--border-color);
+    padding-bottom: 120px;
+}
+
+.contact-box {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    padding: 60px;
+    border-radius: 24px;
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.03);
+    position: relative;
+}
+
+.contact-box h2 {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.contact-box p {
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.contact-details {
+    display: flex;
+    gap: 60px;
+}
+
+.detail-item span {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.detail-item a, .detail-item p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.detail-item a:hover {
+    color: var(--blue-glow);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* Patička */
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 40px 20px;
+    background-color: #040406;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    color: #475569;
+    font-size: 0.85rem;
+}
+
+/* Mobilní optimalizace */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-main);
+        border-bottom: 1px solid var(--border-color);
+        padding: 24px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav.open {
+        display: flex;
+    }
+
+    nav a {
+        margin-left: 0;
+        font-size: 1.1rem;
+    }
+    
+    nav a.active::after {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2.6rem;
+    }
+
+    .contact-box {
+        padding: 40px 20px;
+    }
+
+    .contact-details {
+        flex-direction: column;
+        gap: 28px;
+    }
+}
